@@ -152,78 +152,49 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >InnoDB行格式</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >InnoDB页结构简述</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="InnoDB行格式"><a href="#InnoDB行格式" class="headerlink" title="InnoDB行格式"></a>InnoDB行格式</h1><p>InnoDB是一个将表中的数据存储到磁盘上的存储引擎。 为了方便磁盘与内存的读取，InnoDB以页的格式存储数据。我们可以通过 <code>SHOW GLOBAL VARIABLES LIKE &#39;innodb_page_size&#39;;</code> 的方式查看页的大小。 一般来说，页的大小会设置为16384（16KB）。</p>
-<p>我们以记录为单位向表中插入数据。 这些记录在磁盘存储的格式称为行格式或者纪录格式。 我们可以通过下面的方式指定或者修改表的行格式：</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">(</span><span class="token keyword">TABLE</span> NAME<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">COLUMN</span> INFORMATION<span class="token punctuation">)</span> ROW_FORMAT<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token punctuation">(</span><span class="token keyword">TABLE</span> NAME<span class="token punctuation">)</span> ROW_FORMAT<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>行格式主要有四类：</p>
-<ul>
-<li>COMPACT</li>
-<li>REDUNDANT</li>
-<li>DYNAMIC</li>
-<li>COMPRESSED</li>
-</ul>
-<h2 id="COMPACT行格式"><a href="#COMPACT行格式" class="headerlink" title="COMPACT行格式"></a>COMPACT行格式</h2><p>我们主要以COMPACT为例讲解。COMPACT行格式记录的信息包括记录的额外信息和记录的真实数据两部分，可以表示为</p>
-<blockquote>
-<p>变长字段长度列表，NULL值列表，记录头信息 （额外信息）<br>列1的信息，列2的信息，……，列n的信息 （真实数据）</p>
-</blockquote>
-<h3 id="记录的额外信息"><a href="#记录的额外信息" class="headerlink" title="记录的额外信息"></a>记录的额外信息</h3><h4 id="变长字段长度列表"><a href="#变长字段长度列表" class="headerlink" title="变长字段长度列表"></a>变长字段长度列表</h4><p>顾名思义，这块主要以列表形式存储诸如<code>VARCHAR(M), VARBINARY(M)</code> ，各种<code>TEXT</code>类型，各种<code>BLOB</code>类型这样的变长数据类型数据的字节数。<strong>各变长字段的真实数据占用的字节数按照列的顺序逆序存放</strong>。</p>
-<p>那么如何确定表的最大长度呢？第一步一定是首先<strong>查看表结构</strong>，并确定某个变长字段运行存储的最大字节数。 之后比较理论最大字节数（即最多存储的字符数 × 字符集单字符最多需要的字节数）与允许的最大字节数进行比较。 如果超过且真实数据占用的字节超过允许最大字节数\2，那么用2字节表示真实数据占用的字节数。否则使用1字节。</p>
-<p>注意：<strong>变长字段长度列表中只存储值为非NULL的列的内容长度</strong>。 同时，行格式里不是一定要有变长字段长度列表。 比如表中没有变长数据类型或者有但都为NULL，则不需要该列表。</p>
-<h4 id="NULL值列表"><a href="#NULL值列表" class="headerlink" title="NULL值列表"></a>NULL值列表</h4><p>COMPACT行格式会把表中值为NULL的列统一管理，其过程如下：</p>
-<p>1、 统计表中允许存储NULL的列。比如主键列以及用<code>NOT NULL</code>修饰的列是不允许存储NULL值的。 如果表中没有允许存储NULL的列，那么NULL值表就不存在了。<br>2、 对允许存储NULL值的列对应一个二进制位。 同样， 二进制位按照列的顺序<strong>逆序排序</strong>。二进制位的意义位：</p>
-<ul>
-<li>二进制位为1时， 代表该列的值为NULL</li>
-<li>二进制位为0时， 代表该列的值不为NULL</li>
-</ul>
-<p>3、 NULL值列表必须以整数字节表示，如果非整需要采用高位补零。</p>
-<h4 id="记录头信息"><a href="#记录头信息" class="headerlink" title="记录头信息"></a>记录头信息</h4><p>记录头信息有5个字节（40个二进制位），用于描述记录的一些属性。</p>
-<h3 id="记录的真实数据"><a href="#记录的真实数据" class="headerlink" title="记录的真实数据"></a>记录的真实数据</h3><p>除了表中的原始数据， MySQL还会位某些表默认添加一些列，也就是所谓隐藏列。</p>
-<table>
+                <h1 id="InnoDB数据页结构"><a href="#InnoDB数据页结构" class="headerlink" title="InnoDB数据页结构"></a>InnoDB数据页结构</h1><h2 id="数据页结构概览"><a href="#数据页结构概览" class="headerlink" title="数据页结构概览"></a>数据页结构概览</h2><table>
 <thead>
 <tr>
-<th align="center">列名</th>
-<th align="center">是否必需</th>
-<th align="center">占用空间</th>
-<th align="center">描述</th>
+<th align="center">名称</th>
+<th align="center">占用字节</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">DB_ROW_ID</td>
-<td align="center">否</td>
-<td align="center">6字节</td>
-<td align="center">行ID, 唯一标识一条记录</td>
+<td align="center">File Header（文件头部）</td>
+<td align="center">38字节</td>
 </tr>
 <tr>
-<td align="center">DB_TRX_ID</td>
-<td align="center">是</td>
-<td align="center">6字节</td>
-<td align="center">事务ID</td>
+<td align="center">Page Header(页面头部)</td>
+<td align="center">56字节</td>
 </tr>
 <tr>
-<td align="center">DB_ROLL_PTR</td>
-<td align="center">是</td>
-<td align="center">7字节</td>
-<td align="center">回滚指针</td>
+<td align="center">Infimum+Supremum(页面中的最小记录和最大记录)</td>
+<td align="center">26字节</td>
+</tr>
+<tr>
+<td align="center">User Records(用户记录)</td>
+<td align="center">不确定</td>
+</tr>
+<tr>
+<td align="center">Free Space(空闲空间)</td>
+<td align="center">不确定</td>
+</tr>
+<tr>
+<td align="center">Page Directory(页目录)</td>
+<td align="center">不确定</td>
+</tr>
+<tr>
+<td align="center">File Trailer(文件尾部)</td>
+<td align="center">8字节</td>
 </tr>
 </tbody></table>
-<p>DB_ROW_ID是针对如果用户没有指定主键列且也没有非NULL列（没有主键MySQL会选取一个不允许存储NULL的列作为主键）的情况下，MySQL会自动生成一个DB_ROW_ID列作为主键列。</p>
-<h2 id="REDUNDANT行格式"><a href="#REDUNDANT行格式" class="headerlink" title="REDUNDANT行格式"></a>REDUNDANT行格式</h2><p>REDUNDANT行格式同样有两部分：</p>
-<blockquote>
-<p>字段长度偏移列表， 记录头信息（额外信息）<br>列1的信息，列2的信息，……，列n的信息 （真实数据）</p>
-</blockquote>
-<h3 id="字段长度偏移列表"><a href="#字段长度偏移列表" class="headerlink" title="字段长度偏移列表"></a>字段长度偏移列表</h3><p>与变长字段长度列表相比：</p>
-<ul>
-<li>所有列（包括隐藏列）的长度信息读按照逆序存储到字段长度偏移列表</li>
-<li>采用两个相邻偏移量的差值来计算各个列值的长度</li>
-</ul>
-<h3 id="NULL值的处理"><a href="#NULL值的处理" class="headerlink" title="NULL值的处理"></a>NULL值的处理</h3><p>列对应的偏移量值的第一个比特位会标记该列是否位NULL，该比特位称为NULL比特位。</p>
-<h2 id="溢出列"><a href="#溢出列" class="headerlink" title="溢出列"></a>溢出列</h2><p>页的大小一般是16KB，如果出现所需存取的数比页大小大的情况，就会出现所谓“溢出列”的现象。一般MySQL为了解决该问题，会把数据分散存在不同的页中。在行格式的真实数据处会用20字节存储指向这些页的地址。 MySQL规定一个页中至少存放两行记录。</p>
+<h2 id="记录在页中的存储"><a href="#记录在页中的存储" class="headerlink" title="记录在页中的存储"></a>记录在页中的存储</h2><p>User Records部分负责按照指定的行格式存储记录。 每插入一条新记录，都需要从Free Space里申请新的空间。 如果Free Space的全部空间都用完了， 那么这个页也用完，需要申请下一个页了。记录紧密地存储在一起，形成<strong>堆（heap）</strong>。记录头信息中会保存每条记录在堆中的相对位置，称为<code>heap_no</code>。值得注意的是，在每个页中会额外存储两个记录，一条代表页面中的最小记录（Infimum记录），一条代表页面中的最大记录（Supremum记录）。这两条记录拥有最小的<code>heap_no</code>，相对位置也最靠前。<br>页中的记录是<strong>按照主键的大小比较大小</strong>的。头信息中的<code>next_record</code>会保存当前记录的真实数据到下一条记录的真实数据的距离。自然，从这里可以看出，<strong>记录实际上是以链表的形式存储的</strong>。链表是按照主键大小串联起来的。链表开头就是Infimum记录，结尾是Supremum记录。如果某条记录被删除，该条记录的<code>deleted_flag</code>会被标记为1，<code>next_record</code>也会变成0，上条记录的 <code>next_record</code>也会产生相应变化。但是该条记录并不会被物理删除以防下次再次使用。 <code>n_owned</code>也会产生相应变化，这里暂且不谈。如果删除的记录很多，会利用原始的<code>next_record</code>信息产生一个垃圾链表。</p>
+<h3 id="Page-Directory-页目录"><a href="#Page-Directory-页目录" class="headerlink" title="Page Directory(页目录)"></a>Page Directory(页目录)</h3><p>为了方便进行大量数据的查找，InnoDB会采用页目录方便查找。其步骤可以归纳为：<br>1、将包括Infimum记录和Supremum记录在内的所有记录划分为几个组<br>2、每个组内最后一个（也就是最大的）记录的头信息中的<code>n_owned</code>属性会记录该组总共有多少记录。<br>3、将每个组最后一条记录的地址偏移量（即该记录的真实数据与页面中第0个字节之间的距离）单独提取出来，按顺序存储到Page Directory(页目录)。页目录中的这些偏移量称为槽（Slot)，每个槽占用2个字节。</p>
+<hr>
 
             </div>
 
@@ -286,8 +257,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://www.example.com/2022/09/23/Innodb%E8%A1%8C%E6%A0%BC%E5%BC%8F/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://www.example.com/2022/09/23/Innodb%E8%A1%8C%E6%A0%BC%E5%BC%8F/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://www.example.com/2022/09/25/InnoDB%E9%A1%B5%E7%BB%93%E6%9E%84%E7%AE%80%E8%BF%B0/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.example.com/2022/09/25/InnoDB%E9%A1%B5%E7%BB%93%E6%9E%84%E7%AE%80%E8%BF%B0/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
