@@ -1,0 +1,675 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    交叉小径的花园
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 6.1.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">WYFC4</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/vwyf0305?tab=repositories" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="500px" href="http://500px.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-500px"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >简单实现线程安全的Observer模式</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="简单实现线程安全的Observer模式"><a href="#简单实现线程安全的Observer模式" class="headerlink" title="简单实现线程安全的Observer模式"></a>简单实现线程安全的Observer模式</h1><p>最近开始看陈硕老师的《Linux多线程服务器编程》，刚好发现b站Up主啊起个名字不容易的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NS4y1L7Sj?p=5&share_source=copy_web&vd_source=d3ee2cc8c1a3697281c84b142717e2ef">总结视频</a>，所以学习总结了一下。</p>
+<h2 id="什么是Observer模式"><a href="#什么是Observer模式" class="headerlink" title="什么是Observer模式"></a>什么是Observer模式</h2><p>观察者（Observer）模式的定义：指多个对象间存在一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。这种模式有时又称作发布-订阅模式、模型-视图模式，它是对象行为型模式。</p>
+<h3 id="复习多态"><a href="#复习多态" class="headerlink" title="复习多态"></a>复习多态</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Father</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+      <span class="token keyword">explicit</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+      <span class="token keyword">explicit</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string <span class="token operator">&amp;</span>name<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">name_</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+     
+      <span class="token keyword">inline</span> <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+      <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"The name of father is "</span><span class="token operator">&lt;&lt;</span>name_<span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span><span class="token operator">:</span>
+       <span class="token keyword">const</span> std<span class="token operator">::</span>string name_ <span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Son</span><span class="token operator">:</span><span class="token keyword">public</span> Father
+<span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">explicit</span> <span class="token function">Son</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string <span class="token operator">&amp;</span>name<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">Father</span><span class="token punctuation">(</span>name<span class="token operator">+</span> <span class="token string">". Son() is called."</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">name_</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+        <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> override
+        <span class="token punctuation">{</span>
+            std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"The name of son is "</span><span class="token operator">&lt;&lt;</span>name_<span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+      <span class="token keyword">const</span> std<span class="token operator">::</span>string name_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Father <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Son</span><span class="token punctuation">(</span><span class="token string">"Teddy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token operator">-</span><span class="token operator">></span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> p<span class="token punctuation">;</span>
+</code></pre>
+<p>将Father类的<code>call()</code>函数声明为virtual，就可以让基类指针<code>p</code>指向一个派生类对象并调用派生类的<code>call()</code>函数。通过<code>override</code>显式让派生类重写基类中的同名函数。<br>多态发生的条件：<br>1）使用一个指向派生类的基类指针或者引用<br>2）访问虚函数</p>
+<h3 id="Observer0-1的实现"><a href="#Observer0-1的实现" class="headerlink" title="Observer0.1的实现"></a>Observer0.1的实现</h3><p>我们首先实现一个最简陋的观察者模式。</p>
+<p>观察者模式需要一个观察者变量，在观察者变量变动后，需要各个观察者都可以自动更新内容。我们可以简单定义一个观察者抽象基类表示：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Observer</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 观察者</span>
+</code></pre>
+<p>同时，我们定义一个观察者变量，里面定义注册函数来加入新的观察者，通知函数通知观察者进行更新。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Observable</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 通知所有观察者刷新</span>
+        <span class="token keyword">void</span> <span class="token function">register_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注册函数</span>
+    
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        std<span class="token operator">::</span>vector<span class="token operator">&lt;</span>Observer<span class="token operator">*</span><span class="token operator">></span> observers<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 被观察者</span>
+</code></pre>
+<p>一般为了线程安全，尽可能不适用this指针，不能把注册函数定义在构造函数内。我们用一个<code>Observer*</code>类型的vector来存储所有指向观察者变量的指针。</p>
+<p>我们可以简单书写一下两个成员函数的实现。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> observer<span class="token operator">:</span> observers<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        observer<span class="token operator">-</span><span class="token operator">></span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">register_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    observers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>我们现在可以构建一个继承于观察者变量的Data类</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Data</span><span class="token operator">:</span><span class="token keyword">public</span> Observable
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> data_<span class="token punctuation">;</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">explicit</span> <span class="token function">Data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">default</span><span class="token punctuation">;</span>
+        <span class="token keyword">explicit</span> <span class="token function">Data</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>newData<span class="token punctuation">)</span>
+        <span class="token operator">:</span> <span class="token function">data_</span><span class="token punctuation">(</span>newData<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">explicit</span> <span class="token function">Data</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;&amp;</span>newData<span class="token punctuation">)</span>
+        <span class="token operator">:</span> <span class="token function">data_</span><span class="token punctuation">(</span>newData<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+       
+        <span class="token keyword">inline</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">returnData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> data_<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            data_ <span class="token operator">=</span> data<span class="token punctuation">;</span>
+            <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span>std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;&amp;</span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            data_ <span class="token operator">=</span> data<span class="token punctuation">;</span>
+            <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>以及实现两个新的观察者：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Observer1</span><span class="token operator">:</span><span class="token keyword">public</span> Observer
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token function">Observer1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+        <span class="token function">Observer1</span><span class="token punctuation">(</span><span class="token keyword">const</span> Data <span class="token operator">&amp;</span>newData<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">data_class</span><span class="token punctuation">(</span>newData<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override
+        <span class="token punctuation">{</span>
+            std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"Observer1() is called.\n"</span><span class="token punctuation">;</span>
+            <span class="token keyword">auto</span> _data <span class="token operator">=</span> data_class<span class="token punctuation">.</span><span class="token function">returnData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> x<span class="token operator">:</span>_data<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span>x<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"\n"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        <span class="token keyword">const</span> Data <span class="token operator">&amp;</span>data_class<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Observer2</span><span class="token operator">:</span><span class="token keyword">public</span> Observer
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token function">Observer2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">delete</span><span class="token punctuation">;</span>
+        <span class="token function">Observer2</span><span class="token punctuation">(</span><span class="token keyword">const</span> Data <span class="token operator">&amp;</span>newData<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">data_class</span><span class="token punctuation">(</span>newData<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override
+        <span class="token punctuation">{</span>
+            std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"Observer2() is called.\n"</span><span class="token punctuation">;</span>
+            <span class="token keyword">auto</span> _data <span class="token operator">=</span> data_class<span class="token punctuation">.</span><span class="token function">returnData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> x<span class="token operator">:</span>_data<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span>x<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"\n"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        <span class="token keyword">const</span> Data <span class="token operator">&amp;</span>data_class<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这里需要把观察者的<code>update()</code>成员函数与观察者变量的进行区分。观察者变量的<code>update()</code>成员函数会更新数据，并利用之前基类定义的<code>notify()</code>成员函数通知各个观察者调用自己的<code>update()</code>成员函数进行相应的更新。</p>
+<p>之后我们可以简单运行代码测试一下：</p>
+<pre class=" language-cpp"><code class="language-cpp">Data data<span class="token punctuation">{</span>std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Observer1 ob1<span class="token punctuation">{</span>data<span class="token punctuation">}</span><span class="token punctuation">;</span>
+Observer2 <span class="token function">ob2</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+data<span class="token punctuation">.</span><span class="token function">register_</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ob1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+data<span class="token punctuation">.</span><span class="token function">register_</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ob2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> x<span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">auto</span> arr <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">returnData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> y<span class="token punctuation">{</span><span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+data<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+data<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>我们首先初始化Data类，然后定义两个观察者变量，并依次注册到data对象中。之后我们很简陋地更新了数据，输出在下面所示：</p>
+<pre class=" language-c"><code class="language-c"><span class="token function">Observer1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> is called<span class="token punctuation">.</span>
+ <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span>
+<span class="token function">Observer2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> is called<span class="token punctuation">.</span>
+ <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span>
+<span class="token function">Observer1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> is called<span class="token punctuation">.</span>
+ <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span>
+<span class="token function">Observer2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> is called<span class="token punctuation">.</span>
+ <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span> <span class="token number">6</span> <span class="token number">7</span> <span class="token number">8</span>
+</code></pre>
+<h3 id="Observer0-2的实现"><a href="#Observer0-2的实现" class="headerlink" title="Observer0.2的实现"></a>Observer0.2的实现</h3><p>之前我们是在观察者变量里用一个vector来存储所有观察者的指针，但是如果刚好该观察者已经析构了，我们希望程序会有相应的处理而不是继续访问指针指向的对象。</p>
+<p>直观上，我们首先想到在Observer销毁时先删掉vector中指向自己的指针。我们可以在Observer类中存入一个指向观察者变量的指针<code>Observable *variable_pointer;</code>（这里为了方便暂时先是public成员变量）。然后我们通过写一个Observable类中的<code>unregister()</code>成员函数来取消注册。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">unregister_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> it<span class="token operator">=</span>observers<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>observers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">*</span>it <span class="token operator">==</span> observer<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            it <span class="token operator">=</span> observers<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+            it<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>当然，<code>register()</code>也应该相应的更改。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">register_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    observers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    observer<span class="token operator">-</span><span class="token operator">></span>variable_pointer <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在观察者变量的析构函数中调用<code>unregister()</code>，使其销毁时自动取消注册。</p>
+<pre class=" language-cpp"><code class="language-cpp"> <span class="token operator">~</span><span class="token function">Observer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    variable_pointer<span class="token operator">-</span><span class="token operator">></span><span class="token function">unregister_</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>为了考虑多线程访问临界资源的问题，我们可以尝试用RALL的思想封装Linux的多线程（先不考虑C++11的线程库）。</p>
+<p>Mutex类的声明：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">namespace</span> rall_test
+<span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">RallMutex</span>
+    <span class="token punctuation">{</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        pthread_mutex_t mutex_<span class="token punctuation">;</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token function">RallMutex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">inline</span> <span class="token keyword">void</span> <span class="token function">unlcok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">~</span><span class="token function">RallMutex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Mutex类的粗糙实现：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">using</span> <span class="token keyword">namespace</span> rall_test<span class="token punctuation">;</span>
+
+RallMutex<span class="token operator">::</span><span class="token function">RallMutex</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">pthread_mutex_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mutex_<span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    
+RallMutex<span class="token operator">::</span><span class="token operator">~</span><span class="token function">RallMutex</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">pthread_mutex_destroy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> RallMutex<span class="token operator">::</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">pthread_mutex_lock</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> RallMutex<span class="token operator">::</span><span class="token function">unlcok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">pthread_mutex_unlock</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>不过我们希望继续用RALL手法封装互斥锁的创建销毁，即不需要手动<code>lock()</code>和<code>unlock()</code>。于是根据原书的建议，我们希望封装一个MutexLoCKGuard类封装临界区的进入和退出，即加锁和解锁。</p>
+<pre class=" language-cpp"><code class="language-cpp">    <span class="token keyword">class</span> <span class="token class-name">MutexLocKGuard</span>
+    <span class="token punctuation">{</span>
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        RallMutex <span class="token operator">&amp;</span>mutex_<span class="token punctuation">;</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">explicit</span> <span class="token function">MutexLocKGuard</span><span class="token punctuation">(</span>RallMutex <span class="token operator">&amp;</span>mutex_<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">mutex_</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            mutex_<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token operator">~</span><span class="token function">MutexLocKGuard</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            mutex_<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>为了不让外界调用RallMutex类的上锁解锁方法，我们可以把上锁解锁的函数声明为私有成员函数，并把MutexLocKGuard类声明为友元类。</p>
+<p>我们现在用C++11提供的线程库为我们的0.2版本加上锁：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Observable</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 通知所有观察者刷新</span>
+        <span class="token keyword">void</span> <span class="token function">register_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注册函数</span>
+        <span class="token keyword">void</span> <span class="token function">unregister_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        std<span class="token operator">::</span>vector<span class="token operator">&lt;</span>Observer<span class="token operator">*</span><span class="token operator">></span> observers<span class="token punctuation">;</span>
+        <span class="token keyword">mutable</span> std<span class="token operator">::</span>mutex mutex_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 被观察者</span>
+</code></pre>
+<p>在成员函数里加上<code>lock_guard</code>:</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> observer<span class="token operator">:</span> observers<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        observer<span class="token operator">-</span><span class="token operator">></span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">register_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    observers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    observer<span class="token operator">-</span><span class="token operator">></span>variable_pointer <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">unregister_</span><span class="token punctuation">(</span>Observer<span class="token operator">*</span> observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> it<span class="token operator">=</span>observers<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">!=</span>observers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">*</span>it <span class="token operator">==</span> observer<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            it <span class="token operator">=</span> observers<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+            it<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>另一方面，我们也需要防止在unregister时观察者也已经死亡。同时，析构函数里加锁是没有意义的。<br>这会产生竞态条件：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// thread A</span>
+std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">delete</span> x<span class="token punctuation">;</span>
+x <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//thread B</span>
+std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    x<span class="token operator">-</span><span class="token operator">></span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>比如书中这个例子，加入线程B在进入判断语句时刚好线程A销毁了x,那么直接调用<code>x-&gt;update()</code>会发生未定义行为。书上给的解决办法就是智能指针。</p>
+<ul>
+<li>shared_ptr:带引用计数的智能指针</li>
+<li>weak_ptr: 指向shared_ptr，防止循环引用</li>
+<li>unique_ptr: 同一块内存只能被一个指针指向</li>
+</ul>
+<h2 id="使用智能指针的Observer0-3"><a href="#使用智能指针的Observer0-3" class="headerlink" title="使用智能指针的Observer0.3"></a>使用智能指针的Observer0.3</h2><p>我们可以尝试把之前存储观察者指针的vector改为存储智能指针</p>
+<pre class=" language-cpp"><code class="language-cpp">
+<span class="token keyword">class</span> <span class="token class-name">Observable</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 通知所有观察者刷新</span>
+        <span class="token keyword">void</span> <span class="token function">register_</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span>Observer<span class="token operator">></span> <span class="token operator">&amp;</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注册函数</span>
+    
+    <span class="token keyword">private</span><span class="token operator">:</span>
+        std<span class="token operator">::</span>vector<span class="token operator">&lt;</span>std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span>Observer<span class="token operator">>></span> observers<span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">// 引用计数至少为1</span>
+        <span class="token keyword">mutable</span> std<span class="token operator">::</span>mutex mutex_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>  
+</code></pre>
+<p><strong>如果使用shared_ptr，那么可能会有观察者全部销毁但是vector仍有一份的情况。</strong> 所以这里使用weak_ptr。</p>
+<pre class=" language-cpp"><code class="language-cpp">
+<span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> iter<span class="token operator">=</span>observers<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> iter<span class="token operator">!=</span>observers<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">auto</span> p <span class="token operator">=</span> iter<span class="token operator">-</span><span class="token operator">></span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            p<span class="token operator">-</span><span class="token operator">></span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            iter<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            iter <span class="token operator">=</span> observers<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里有个问题：我们可以用weak_ptr解决刚刚析构函数的解注册问题吗？我们可以在观察者基类中加入一个<code>std::weak_ptr&lt;Observable&gt; variable_pointer;</code>来进行解注册吗？如果我们这样做，我们就会在<code>register()</code>里写入类似这样的写法：</p>
+<pre class=" language-cpp"><code class="language-cpp">  <span class="token keyword">auto</span> p <span class="token operator">=</span> observer<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        p<span class="token operator">-</span><span class="token operator">></span>variable_pointer <span class="token operator">=</span> std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>Observable<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// FATAL</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>这种写法肯定是有问题的。我们使用了一个带隐式类型转化的拷贝初始化。我们将this指针绑定在一个shared_ptr上。那么如果该智能指针生命周期结束，观察者变量的this很可能也被销毁。这带来的后果是不可以预计的。</p>
+<p>为了解决这一问题，我们需要让观察者变量继承C++11标准提供的<code>std::enable_shared_from_this&lt;Observable&gt;</code>。于是我们就可以将注册函数改写为：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Observable<span class="token operator">::</span><span class="token function">register_</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>weak_ptr<span class="token operator">&lt;</span>Observer<span class="token operator">></span> <span class="token operator">&amp;</span>observer<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    observers<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> p <span class="token operator">=</span> observer<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// p->variable_pointer = std::shared_ptr&lt;Observable>(this); // FATAL</span>
+        p<span class="token operator">-</span><span class="token operator">></span>variable_pointer <span class="token operator">=</span> <span class="token function">shared_from_this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>我们通过引入智能指针解决了裸指针的一些问题。可是依旧有一些问题。一方面，我们广泛加锁。另一方面，观察者变量调用观察者的<code>update()</code>行为不可知，如果该更新函数调用了注册或者解注册函数，就会导致多次加锁甚至死锁。<br>为此，我们可以尝试使用互斥锁加智能指针模拟的读写锁。可是根据原书中所说，不推荐在程序中使用读写锁。<br>1、读写锁性能不如互斥锁<br>2、读锁中不小心修改数据导致程序崩溃<br>3、 读锁可重入，写锁不可重入。如果一个读锁在重入的过程中被写锁抢占，可能会导致死锁。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Cow</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">private</span><span class="token operator">:</span>
+     <span class="token comment" spellcheck="true">//std::vector&lt;int> arr_;</span>
+     std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> arr_<span class="token punctuation">;</span>
+     <span class="token keyword">mutable</span> std<span class="token operator">::</span>mutex mutex_<span class="token punctuation">;</span>
+   <span class="token keyword">public</span><span class="token operator">:</span>
+     <span class="token function">Cow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">arr_</span><span class="token punctuation">(</span><span class="token keyword">new</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      
+     <span class="token keyword">void</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+     <span class="token keyword">void</span> <span class="token function">append</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> Cow<span class="token operator">::</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">decltype</span><span class="token punctuation">(</span>arr_<span class="token punctuation">)</span> new_arr_<span class="token punctuation">;</span> 
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_arr_ <span class="token operator">=</span> arr_<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 引用计数+1</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> i<span class="token operator">:</span><span class="token operator">*</span>new_arr_<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> Cow<span class="token operator">::</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">guard</span><span class="token punctuation">(</span>mutex_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>arr_<span class="token punctuation">.</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        arr_<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token keyword">new</span> std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">*</span>arr_<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    arr_<span class="token operator">-</span><span class="token operator">></span><span class="token function">push_back</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 判断是否有人在用arr_</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这样就通过读时共享，写时复制的方式来实现一个简单的读写锁。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.example.com/2022/10/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84Observer%E6%A8%A1%E5%BC%8F/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.example.com/2022/10/20/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84Observer%E6%A8%A1%E5%BC%8F/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a target="_blank" rel="noopener" href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
