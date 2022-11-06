@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    交叉小径的花园
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 6.1.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">WYFC4</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/vwyf0305?tab=repositories" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="500px" href="http://500px.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-500px"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >C++中类所占的空间</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="类所占的空间"><a href="#类所占的空间" class="headerlink" title="类所占的空间"></a>类所占的空间</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> A
+<span class="token punctuation">{</span>
+   <span class="token keyword">public</span><span class="token operator">:</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(A):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sizeof(A):1</span>
+</code></pre>
+<p>A是一个空类，如果直接输出A所占的字节会发现只有1个字节。可见对象至少占一个字节。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> B
+<span class="token punctuation">{</span>
+   <span class="token keyword">public</span><span class="token operator">:</span>
+   <span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+   <span class="token keyword">void</span> <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> C<span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true">//char variable;</span>
+   <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(B):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>B<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//  sizeof(B):1</span>
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(C):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//  sizeof(C):4</span>
+</code></pre>
+<p>B只含有两个成员函数，依然只占1个字节。成员函数不占用类对象本身的内存空间。而C会占用4个字节。可见：<strong>每个对象所占用的存储空间只是该对象的数据部分所占用的存储空间，而不包括函数代码所占用的存储空间</strong>。</p>
+<h2 id="对象结构的发展与演化"><a href="#对象结构的发展与演化" class="headerlink" title="对象结构的发展与演化"></a>对象结构的发展与演化</h2><p>1、 非静态的成员变量跟着类对象走（存在对象内部），换言之，每个类对象都有自己的成员变量。</p>
+<p>2、 静态成员变量不会保存在对象内部。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> D
+<span class="token punctuation">{</span>
+   <span class="token keyword">static</span> <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+   <span class="token keyword">static</span> <span class="token keyword">int</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(D)"</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sizeof(D):1</span>
+</code></pre>
+<p>类D所占字节也依旧是1个字节。</p>
+<p>3、无论是静态还是非静态成员函数，都保存在对象之外, 不占用类对象的内存空间。</p>
+<p>4、如果类内部有虚函数（无论有多少个虚函数所占空间一致），其会占用对象内部一部分内存空间。具体占用大小由是64位机还是32位机来定义。本人在Fedora36上测试，如果类里含有虚函数，对象会额外多出8个字节。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> E
+<span class="token punctuation">{</span>
+   <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+   <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(E):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>E<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sizeof(E):8</span>
+</code></pre>
+<p>之所以会多出8个字节，是因为对象内部会多出一个指向虚函数表的指针（在64位机上，<code>void*</code>指针会占用8个字节）。</p>
+<p>5、 如果有多个数据成员，</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> F
+<span class="token punctuation">{</span>
+   <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+   <span class="token keyword">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(F):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>F<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sizeof(F):8</span>
+</code></pre>
+<p>虽然数据成员x和y加起来总共有5个字节，但是为了进行<a target="_blank" rel="noopener" href="http://light3moon.com/2015/01/19/%5B%E8%BD%AC%5D%20%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">内存对齐</a>，实际F的对象占用8个字节。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.example.com/2022/11/06/C-%E4%B8%AD%E7%B1%BB%E6%89%80%E5%8D%A0%E7%9A%84%E7%A9%BA%E9%97%B4/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.example.com/2022/11/06/C-%E4%B8%AD%E7%B1%BB%E6%89%80%E5%8D%A0%E7%9A%84%E7%A9%BA%E9%97%B4/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a target="_blank" rel="noopener" href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
