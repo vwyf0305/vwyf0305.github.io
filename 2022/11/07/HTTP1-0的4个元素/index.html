@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    交叉小径的花园
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 6.1.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">WYFC4</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/vwyf0305?tab=repositories" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="500px" href="http://500px.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-500px"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >HTTP1.0的4个元素</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="HTTP1-0的4个基本元素"><a href="#HTTP1-0的4个基本元素" class="headerlink" title="HTTP1.0的4个基本元素"></a>HTTP1.0的4个基本元素</h1><p>HTTP的4个基本元素分别是</p>
+<ul>
+<li>方法和路径</li>
+<li>首部</li>
+<li>主体</li>
+<li>状态码</li>
+</ul>
+<p>这里简要总结《详解HTTP》中的内容。首先利用Go语言简要实现一个显示hello的echo 服务器。</p>
+<pre class=" language-go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"log"</span>
+    <span class="token string">"net/http"</span>
+    <span class="token string">"net/http/httputil"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">handler</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dump<span class="token punctuation">,</span> err <span class="token operator">:=</span> httputil<span class="token punctuation">.</span><span class="token function">DumpRequest</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        http<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Sprint</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>dump<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> <span class="token string">"&lt;html>&lt;boyd>hello&lt;/body>&lt;/html>\n"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> httpServer http<span class="token punctuation">.</span>Server
+    http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> handler<span class="token punctuation">)</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"start http listening:18888"</span><span class="token punctuation">)</span>
+    httpServer<span class="token punctuation">.</span>Addr <span class="token operator">=</span> <span class="token string">":18888"</span>
+    log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>httpServer<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里我们直接<code>go run server.go</code>即可在终端中运行。如果成功，我们可以在终端看到<code>日期+时间+start http listening:1888</code>的字样。在浏览器中输入<code>localhost:1888</code>，我们应该也可以看到hello字样了。</p>
+<h2 id="curl的简单使用"><a href="#curl的简单使用" class="headerlink" title="curl的简单使用"></a>curl的简单使用</h2><p>curL默认最低支持HTTP1.0（记得curl默认只能在cmd中运行)。在HTTP0.9中，协议只支持向服务器请求网站的页面，并接收网站的内容作为响应，接收完毕就自动切断连接。0.9中的表单查询功能一直延续至今。请求端在地址末尾用“？”词语（“+”隔开）来发送请求。我们可以利用curl中的<code>--data-urlencode</code>来自动在地址加上内容。比如<code>curl --http1.0 -G --data-urlencode &quot;search hello&quot; http://localhost:18888</code>。我们可以看到：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/xv6UDH"><img src="https://s1.ax1x.com/2022/11/07/xv6UDH.png" alt="xv6UDH.png"></a></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>方法表示服务器对指定地址中的资源进行操作。最早来源于新闻组的需求，延续到HTTP协议中。</p>
+<p>比较常用的有：</p>
+<ul>
+<li>GET: 向服务器请求首部和内容</li>
+<li>HEAD: 只向服务器请求首部</li>
+<li>POST: 投递新的文档</li>
+<li>PUT: 更新已经存在的URL的文档</li>
+<li>DELETE: 删除指定的URL的文档</li>
+</ul>
+<h2 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h2><p>首部最早在电子邮件服务中出现，格式一般是“字段名：值”。在curl中，可以通过<code>--header=/-H</code>  来更改或添加首部。各个程序可以添加<code>X-</code>格式的首部，不过现在趋势就是尽可能使用本来RFC定义的首部。比如我们可以手动更改<code>User-Agent</code>的信息(<code>-A</code>)：<code>curl -v --http1.0 -G -A &quot;Mozilla/5.0&quot; http://localhost:18888</code>：<br><a target="_blank" rel="noopener" href="https://imgse.com/i/xvgMfx"><img src="https://s1.ax1x.com/2022/11/07/xvgMfx.png" alt="xvgMfx.png"></a></p>
+<p>这样看就仿佛是火狐浏览器发了一个GET请求。这里的<code>-v</code>可以让我们在客户端看到详细日志，包括服务器的信息。<br><a target="_blank" rel="noopener" href="https://imgse.com/i/xvgrjS"><img src="https://s1.ax1x.com/2022/11/07/xvgrjS.png" alt="xvgrjS.png"></a></p>
+<p>这里的<code>Content-Type</code>表示MIME类型字符串。</p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>上图中的<code>200 OK</code>就是状态码。</p>
+<ul>
+<li>1字头表示正在处理的信息</li>
+<li>2字头表示成功时的响应</li>
+<li>3字头表示服务器给客户端的响应</li>
+<li>4字头表示客户端发送异常请求</li>
+<li>5字头表示服务器发生内部错误</li>
+</ul>
+<p>其中3字头有部分是指示浏览器进行<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Redirections">重定向</a>到别的路径的。浏览器会根据状态码决定是临时重定向还是永久重定向，根据<code>location</code>首部决定重定向的路径。</p>
+<h2 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h2><p>主体和首部隔一行。在curl中可以通过<code>-d / --data / --data-ascii</code>来发送编码后的文本数据，比如我们试图发送一个简单的JSON文件<code>curl -d &quot;&#123;\hello\&quot;: \&quot;world\&quot;&#125;&quot; -H &quot;Content-Type application/json&quot; http://localhost:18888</code>。我们自然会在服务器看到<code>&#123;\hello&quot;: &quot;world&quot;&#125;</code>的表示。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.example.com/2022/11/07/HTTP1-0%E7%9A%844%E4%B8%AA%E5%85%83%E7%B4%A0/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.example.com/2022/11/07/HTTP1-0%E7%9A%844%E4%B8%AA%E5%85%83%E7%B4%A0/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a target="_blank" rel="noopener" href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>

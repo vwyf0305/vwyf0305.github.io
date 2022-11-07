@@ -180,7 +180,7 @@ std<span class="token operator">::</span>cout<span class="token operator">&lt;&l
 std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(C):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//  sizeof(C):4</span>
 </code></pre>
 <p>B只含有两个成员函数，依然只占1个字节。成员函数不占用类对象本身的内存空间。而C会占用4个字节。可见：<strong>每个对象所占用的存储空间只是该对象的数据部分所占用的存储空间，而不包括函数代码所占用的存储空间</strong>。</p>
-<h2 id="对象结构的发展与演化"><a href="#对象结构的发展与演化" class="headerlink" title="对象结构的发展与演化"></a>对象结构的发展与演化</h2><p>1、 非静态的成员变量跟着类对象走（存在对象内部），换言之，每个类对象都有自己的成员变量。</p>
+<h2 id="对象结构小总结"><a href="#对象结构小总结" class="headerlink" title="对象结构小总结"></a>对象结构小总结</h2><p>1、 非静态的成员变量跟着类对象走（存在对象内部），换言之，每个类对象都有自己的成员变量。</p>
 <p>2、 静态成员变量不会保存在对象内部。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> D
 <span class="token punctuation">{</span>
@@ -209,6 +209,77 @@ std<span class="token operator">::</span>cout<span class="token operator">&lt;&l
 std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"sizeof(F):"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>F<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sizeof(F):8</span>
 </code></pre>
 <p>虽然数据成员x和y加起来总共有5个字节，但是为了进行<a target="_blank" rel="noopener" href="http://light3moon.com/2015/01/19/%5B%E8%BD%AC%5D%20%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">内存对齐</a>，实际F的对象占用8个字节。</p>
+<h2 id="this指针调整"><a href="#this指针调整" class="headerlink" title="this指针调整"></a>this指针调整</h2><p>我们考虑以下多重继承的情况：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">struct</span> A
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+    <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"A() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">A</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"A() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">void</span> <span class="token function">print_athis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"print_athis() "</span><span class="token punctuation">;</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> B
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+    <span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"B() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">B</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"B() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">void</span> <span class="token function">print_bthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"print_bthis() "</span><span class="token punctuation">;</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> C<span class="token operator">:</span> <span class="token keyword">public</span> A<span class="token punctuation">,</span> <span class="token keyword">public</span> B
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+    <span class="token function">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"C() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">C</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">x</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"C() this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">void</span> <span class="token function">print_cthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"print_cthis() "</span><span class="token punctuation">;</span>
+        std<span class="token operator">::</span>cout<span class="token operator">&lt;&lt;</span><span class="token string">"this:"</span><span class="token operator">&lt;&lt;</span><span class="token keyword">this</span><span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>接着我们分别调用各自的成员函数，看看各自的this指针地址。</p>
+<pre class=" language-cpp"><code class="language-cpp">C myc<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+myc<span class="token punctuation">.</span><span class="token function">print_athis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myc<span class="token punctuation">.</span><span class="token function">print_bthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myc<span class="token punctuation">.</span><span class="token function">print_cthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>输出：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a44</span>
+<span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a48</span>
+<span class="token function">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a44</span>
+<span class="token function">print_athis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a44</span>
+<span class="token function">print_bthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a48</span>
+<span class="token function">print_cthis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token number">0x7ffc2d763a44</span>
+</code></pre>
+<p>我们会发现，类A会与类C共享同一个地址。<br>这里，我们可以得到结论：派生类是包含基类子对象的。且二者指向的地址相同。如果出现多重继承的情况，那么只有第一个基类子对象与派生类地址相同。后续的基类子对象会根据前面继承的基类子对象的大小决定其地址。</p>
+<p>如果我们在类C中也覆盖<code>print_bthis()</code>函数，那么就会输出<code>print_bthis() this:0x7ffc2d763a44</code>。</p>
 
             </div>
 
