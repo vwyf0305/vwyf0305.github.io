@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    交叉小径的花园
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 6.1.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">WYFC4</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/vwyf0305?tab=repositories" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="500px" href="http://500px.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-500px"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >LeetCoe-25-K个一组翻转翻转链表</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="25题：K个一组反转链表"><a href="#25题：K个一组反转链表" class="headerlink" title="25题：K个一组反转链表"></a>25题：K个一组反转链表</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/">题目</a></h2><p>给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。</p>
+<p>k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
+<p>你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
+<p>示例 1：</p>
+<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2<br>输出：[2,1,4,3,5]<br>示例 2：</p>
+<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 3<br>输出：[3,2,1,4,5]
+ </p>
+<p>提示：<br>链表中的节点数目为 n<br>1 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 5000<br>0 &lt;&#x3D; Node.val &lt;&#x3D; 1000</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">reverseKGroup</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>head<span class="token operator">==</span><span class="token keyword">nullptr</span> <span class="token operator">||</span> head<span class="token operator">-</span><span class="token operator">></span>next<span class="token operator">==</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> head<span class="token punctuation">;</span>
+     
+        <span class="token keyword">auto</span> reverse_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span> <span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token operator">*</span> <span class="token punctuation">{</span>
+            ListNode<span class="token operator">*</span> pre<span class="token punctuation">{</span><span class="token keyword">nullptr</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            ListNode<span class="token operator">*</span> curr<span class="token punctuation">{</span>head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+            ListNode<span class="token operator">*</span> next<span class="token punctuation">{</span><span class="token keyword">nullptr</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>curr<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                next <span class="token operator">=</span> curr<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+                curr<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+                pre <span class="token operator">=</span> curr<span class="token punctuation">;</span>
+                curr <span class="token operator">=</span> next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+         
+        ListNode<span class="token operator">*</span> dumy <span class="token operator">=</span> <span class="token keyword">new</span> ListNode<span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> pre<span class="token punctuation">{</span>dumy<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> start<span class="token punctuation">{</span>head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> end<span class="token punctuation">{</span>head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> next<span class="token punctuation">{</span>head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">!=</span>k <span class="token operator">&amp;&amp;</span> end<span class="token operator">!=</span><span class="token keyword">nullptr</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+             end <span class="token operator">=</span> end<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>end<span class="token operator">==</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        
+        next <span class="token operator">=</span> end<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+        end<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+        end <span class="token operator">=</span> start<span class="token punctuation">;</span>
+        start <span class="token operator">=</span> <span class="token function">reverse_list</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        end<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        pre<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> start<span class="token punctuation">;</span>
+        pre <span class="token operator">=</span> end<span class="token punctuation">;</span>
+        start <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        end <span class="token operator">=</span> next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> dumy<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+          
+    
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="代码简析"><a href="#代码简析" class="headerlink" title="代码简析"></a>代码简析</h2><p>这道题其实难道不算过大，主要是思路要理清。我们可以通过画图来理清楚每步的思路。<br><a target="_blank" rel="noopener" href="https://imgse.com/i/zlG9RU"><img src="https://s1.ax1x.com/2022/11/21/zlG9RU.png" alt="zlG9RU.png"></a></p>
+<p>由于涉及到链表翻转，所以我们需要用一个真“头结点”<strong>始终</strong>指向第一个节点，也就是<code>ListNode* dumy = new ListNode&#123;0,head&#125;</code>。这样我们可以用<code>dumy-&gt;next</code>来返回结果。<br>由题意，我们需要k个为一组。所以我们设定一个<code>pre</code>指针指向每一组的前一个位置，一个<code>start</code>指针指向每组第一个位置，一个<code>end</code>指针指向每组最后一个位置，一个<code>next</code>指针指向每组结尾的后一个位置。<br>我们通过一个<code>while(next)</code>循环来进行<code>n%k</code>次循环。每次循环前，我们会循环<code>k-1</code>次，让<code>end</code>指向每组最后一个数（<code>end</code>每次循环开始时应该是指向每组第一个数，和<code>start</code>一样）。<br>如果在<code>k-1</code>次之前就出现<code>end==nullptr</code>的情况，说明已经不需要分组了，直接在后面退出循环。接着，我们让<code>next=end-&gt;next</code>指向第一个块的后面一个位置。对于第一块，一般就是下面这种情况。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zlYPb9"><img src="https://s1.ax1x.com/2022/11/21/zlYPb9.png" alt="zlYPb9.png"></a></p>
+<p>接下来，我们就要开始做该块的翻转了。我们期望翻转后的结果是<code>start</code>指向原来最后一个元素，<code>end</code>指向原来的第一个元素。我们需要把这个块单独“截断”出来做翻转。链表方法很简单，我们只要把<code>end</code>的<code>next</code>设为空即可。之后我们把这个块传入一个简单的链表翻转函数（这里我们为了简洁，不另外写一个成员函数，而是写了一个lambda表达式）得到翻转后的块。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">auto</span> reverse_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span> <span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token operator">*</span> <span class="token punctuation">{</span>
+            ListNode<span class="token operator">*</span> pre<span class="token punctuation">{</span><span class="token keyword">nullptr</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            ListNode<span class="token operator">*</span> curr<span class="token punctuation">{</span>head<span class="token punctuation">}</span><span class="token punctuation">;</span>
+            ListNode<span class="token operator">*</span> next<span class="token punctuation">{</span><span class="token keyword">nullptr</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>curr<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                next <span class="token operator">=</span> curr<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+                curr<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+                pre <span class="token operator">=</span> curr<span class="token punctuation">;</span>
+                curr <span class="token operator">=</span> next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>翻转函数同样，我们初始化<code>curr</code>指向块的起始位置。原理很简单，我们把每个节点的<code>next</code>指向改为之前的元素即可。这里我们用<code>pre</code>这个空指针初始化每个节点之前的元素。每次我们保存每个节点原始的<code>next</code>指向的位置，并将其<code>next</code>值改为<code>pre</code>。之后我们把<code>pre</code>改为现在的节点。然后利用之前保存的<code>next</code>指针前进<code>curr</code>。一直到<code>curr</code>为空，翻转就结束。最后我们返回<code>pre</code>指针即可。</p>
+<p>假如我们翻转了第一个块，我们返回的应该是<code>2-&gt;1-&gt;nullptr</code>这个链表的头结点。我们需要重新将这个块“接回”原链表。即用<code>end-&gt;next=next</code>。</p>
+<p>我们现在为下一次循环做准备，即让<code>pre</code>指向该块最后一个节点（也就是下一个块的上一个位置）<code>pre=end</code>。<code>start</code>和<code>end</code>指向下一个块的初始位置。之后继续循环直到结束就可以成功让这些组逐个翻转。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.example.com/2022/11/21/LeetCoe-25-K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.example.com/2022/11/21/LeetCoe-25-K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a target="_blank" rel="noopener" href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
